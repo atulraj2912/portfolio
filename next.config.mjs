@@ -1,14 +1,8 @@
 // @ts-check
 
-/**
- * @type {import('next').NextConfig}
- */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+  // Add any other Next.js configuration you need here
 };
 
 export default nextConfig;
