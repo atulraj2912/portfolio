@@ -120,7 +120,7 @@ export const HoveredLink = ({ children, ...rest }: HoveredLinkProps) => {
     <Link
       {...rest}
       href={rest.href}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+      className="text-neutral-700 dark:text-neutral-200 hover:text-black dark:hover:text-white"
     >
       {children}
     </Link>

@@ -15,7 +15,7 @@ const projects = [
 		title: "Batameej.com",
 		description:
 			"An online platform for learning and practicing communication skills.",
-		href: "https://www.youtube.com/watch?v=Kx4c66-GjgE&list=RDKx4c66-GjgE&start_radio=1",
+		href: "https://www.youtube.com/shorts/RKXP0nVRUBM",
 		imgSrc: "/pfi1.png",
 	},
 	{
@@ -33,7 +33,7 @@ export function Projects() {
 			{projects.map((project) => (
 				<PinContainer
 					key={project.title}
-					title={project.href}
+					title={project.title}
 					href={project.href}
 				>
 					<div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem] ">
