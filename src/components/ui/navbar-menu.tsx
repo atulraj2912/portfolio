@@ -109,14 +109,13 @@ export const ProductItem = ({
   );
 };
 
-export const HoveredLink = ({
-  children,
-  ...rest
-}: {
+// Define a more specific type for the props
+interface HoveredLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   href: string;
-  [key: string]: any;
-}) => {
+}
+
+export const HoveredLink = ({ children, ...rest }: HoveredLinkProps) => {
   return (
     <Link
       {...rest}
