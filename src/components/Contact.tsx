@@ -39,8 +39,13 @@ export function Contact() {
     },
   ];
   return (
-    <div className="flex items-center justify-center h-[10rem] w-full">
-      <FloatingDock items={links} />
+    <div id="contact" className="py-20 px-4">
+      <h2 className="text-3xl font-bold text-center text-black dark:text-white mb-10">
+        Contact Me
+      </h2>
+      <div className="flex items-center justify-center h-[10rem] w-full">
+        <FloatingDock items={links} />
+      </div>
     </div>
   );
 }

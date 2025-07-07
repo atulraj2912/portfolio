@@ -19,7 +19,7 @@ export function AboutMe() {
         />
       </div>
       <div className="md:w-2/3 lg:w-3/4">
-        <h2 className="text-3xl font-bold text-center md:text-left mb-8">About Me</h2>
+        <h2 className="text-3xl font-bold text-center md:text-left mb-8 text-black dark:text-white">About Me</h2>
         <TextGenerateEffect duration={2} filter={false} words={words} />
       </div>
     </div>

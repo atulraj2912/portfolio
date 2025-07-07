@@ -1,19 +1,33 @@
-'use client';
+"use client";
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
+import { LampContainer } from "./ui/lamp";
+import { motion } from "framer-motion";
 
 export function Hero() {
   const words = [
     {
+      text: "Hello..!",
+      className: "text-black dark:text-white",
+    },
+    {
+      text: "I am",
+      className: "text-black dark:text-white",
+    },
+    {
       text: "Atul",
+      className: "text-black dark:text-white",
     },
     {
       text: "Raj",
+      className: "text-black dark:text-white",
     },
     {
       text: "-",
+      className: "text-black dark:text-white",
     },
     {
-      text: "FullStack",
+      text: "A FullStack",
+      className: "text-black dark:text-white",
     },
     {
       text: "Developer.",
@@ -21,11 +35,22 @@ export function Hero() {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center h-[40rem]  ">
-      <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base  ">
-        The road to freedom starts from here
-      </p>
-      <TypewriterEffectSmooth words={words} />
-    </div>
+    <LampContainer>
+      <motion.div
+        initial={{ opacity: 0.5, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="flex flex-col items-center justify-center h-full px-4"
+      >
+        <p className="text-neutral-600 dark:text-neutral-200 text-sm sm:text-base  ">
+          Hi, I&apos;m Atul Raj, a passionate Full Stack Developer.
+        </p>
+        <TypewriterEffectSmooth words={words} />
+      </motion.div>
+    </LampContainer>
   );
 }
