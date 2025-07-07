@@ -1,17 +1,14 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useAnimation, useMotionValue, useSpring } from "framer-motion";
+import { useAnimation, useMotionValue, useSpring, MotionValue } from "framer-motion";
 import Link from "next/link";
 import React, { PropsWithChildren, useRef } from "react";
 
 export const FloatingDock = ({
-  children,
   className,
-  mobileClassName,
   items,
 }: PropsWithChildren<{
   className?: string;
-  mobileClassName?: string;
   items: {
     title: string;
     icon: React.ReactNode;
@@ -45,21 +42,19 @@ export const FloatingDock = ({
 export const AppIcon = ({
   mouseX,
   className,
-  children,
   href,
   icon,
   title,
 }: {
-  mouseX?: any;
+  mouseX?: MotionValue<number>;
   className?: string;
-  children?: React.ReactNode;
   href: string;
   icon: React.ReactNode;
   title: string;
 }) => {
-  let ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  let distance = useSpring(100, {
+  const distance = useSpring(100, {
     damping: 20,
     stiffness: 300,
   });
@@ -69,18 +64,20 @@ export const AppIcon = ({
   useMotionValue(0);
 
   React.useEffect(() => {
-    const unsubscribe = mouseX.on("change", (val: any) => {
-      if (ref.current) {
-        let { x, width } = ref.current.getBoundingClientRect();
-        let center = x + width / 2;
-        let newDistance = val - center;
-        distance.set(newDistance);
-      }
-    });
+    if (mouseX) {
+      const unsubscribe = mouseX.on("change", (val: number) => {
+        if (ref.current) {
+          const { x, width } = ref.current.getBoundingClientRect();
+          const center = x + width / 2;
+          const newDistance = val - center;
+          distance.set(newDistance);
+        }
+      });
 
-    return () => {
-      unsubscribe();
-    };
+      return () => {
+        unsubscribe();
+      };
+    }
   }, [distance, mouseX]);
 
   return (
