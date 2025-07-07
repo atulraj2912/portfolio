@@ -47,7 +47,7 @@ export function Hero() {
         className="flex flex-col items-center justify-center h-full px-4"
       >
         <p className="text-neutral-600 dark:text-neutral-200 text-sm sm:text-base  ">
-          Hi, I&apos;m Atul Raj, a passionate Full Stack Developer.
+          👨‍💻 EAT.SLEEP.CODE.REPEAT 👨‍💻
         </p>
         <TypewriterEffectSmooth words={words} />
       </motion.div>
