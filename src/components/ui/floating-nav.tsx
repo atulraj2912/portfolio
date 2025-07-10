@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import React, { PropsWithChildren, useState, useEffect, useCallback, useRef } from "react";
 
 export const FloatingDock = ({
@@ -113,7 +112,7 @@ export const FloatingDock = ({
       >
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8" role="menubar">
-          {items.map((item, idx) => (
+          {items.map((item) => (
             <NavItem
               key={item.href}
               href={item.href}
@@ -181,7 +180,7 @@ export const FloatingDock = ({
               aria-labelledby="mobile-menu-button"
             >
               <div className="p-4 space-y-1">
-                {items.map((item, idx) => (
+                {items.map((item) => (
                   <button
                     key={item.href}
                     onClick={() => handleNavClick(item.href)}

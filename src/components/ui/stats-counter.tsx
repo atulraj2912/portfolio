@@ -20,7 +20,7 @@ export function StatsCounter({ stats }: StatsCounterProps) {
     const timers: NodeJS.Timeout[] = [];
     
     stats.forEach((stat, index) => {
-      const timer = setTimeout(() => {
+      const animationTimer = setTimeout(() => {
         let start = 0;
         const end = stat.number;
         const duration = 2000; // 2 seconds
@@ -41,6 +41,8 @@ export function StatsCounter({ stats }: StatsCounterProps) {
 
         timers.push(counter);
       }, index * 200); // Stagger the animations
+      
+      timers.push(animationTimer);
     });
 
     return () => {
