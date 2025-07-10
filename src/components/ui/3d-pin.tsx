@@ -19,6 +19,7 @@ export const PinContainer = ({
   const [transform, setTransform] = useState(
     'translate(-50%,-50%) rotateX(0deg)'
   );
+  const [isActive, setIsActive] = useState(false);
 
   const onMouseEnter = () => {
     setTransform('translate(-50%,-50%) rotateX(40deg) scale(0.8)');
@@ -27,14 +28,19 @@ export const PinContainer = ({
     setTransform('translate(-50%,-50%) rotateX(0deg) scale(1)');
   };
 
+  const onClick = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <div
       className={cn(
-        'relative group/pin z-50  cursor-pointer',
+        'relative group/pin z-30 cursor-pointer',
         containerClassName
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
     >
       <div
         style={{
@@ -47,12 +53,12 @@ export const PinContainer = ({
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 p-4 top-1/2  flex justify-start items-start  rounded-2xl  shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-black border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+          className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-white dark:bg-black border border-neutral-200 dark:border-white/[0.1] group-hover/pin:border-neutral-300 dark:group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
         >
-          <div className={cn(' relative z-50 ', className)}>{children}</div>
+          <div className={cn('relative z-50', className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
+      <PinPerspective title={title} href={href} isActive={isActive} />
     </div>
   );
 };
@@ -60,24 +66,40 @@ export const PinContainer = ({
 export const PinPerspective = ({
   title,
   href,
+  isActive,
 }: {
   title?: string;
   href?: string;
+  isActive?: boolean;
 }) => {
   return (
-    <motion.div className="pointer-events-none  w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
-      <div className=" w-full h-full -mt-7 flex-none  inset-0">
-        <div className="absolute top-0 inset-x-0  flex justify-center">
+    <motion.div className={cn(
+      "pointer-events-none w-96 h-80 flex items-center justify-center z-[35] transition duration-500",
+      "opacity-0 group-hover/pin:opacity-100",
+      isActive && "opacity-100"
+    )}>
+      <div className="w-full h-full -mt-7 flex-none inset-0">
+        <div className="absolute top-0 inset-x-0 flex justify-center">
           <a
             href={href}
             target={'_blank'}
-            className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 pointer-events-auto"
+            className="relative flex space-x-2 items-center z-10 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 py-3 px-6 ring-1 ring-white/20 pointer-events-auto shadow-lg transition-all duration-200 min-h-[44px] min-w-[120px] justify-center hover:scale-105 active:scale-95"
+            aria-label={`View ${title} project`}
           >
-            <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5">
+            <span className="relative z-20 text-white text-sm md:text-base font-bold inline-block py-0.5">
               {title}
             </span>
+            <svg 
+              className="w-5 h-5 text-white ml-1 flex-shrink-0" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
 
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover/pin:opacity-40"></span>
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-blue-400/0 via-blue-400/90 to-blue-400/0 transition-opacity duration-500 group-hover/pin:opacity-40"></span>
           </a>
         </div>
 
