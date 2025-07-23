@@ -14,7 +14,7 @@ export function Contact() {
       icon: (
         <IconMail className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
-      href: "araj29122004@gmail.com",
+      href: "mailto:araj29122004@gmail.com",
     },
     {
       title: "LinkedIn",
